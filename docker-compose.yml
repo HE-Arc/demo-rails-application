@@ -1,0 +1,44 @@
+web:
+  build: .
+  dockerfile: build/Dockerfile
+  hostname: ror
+  domainname: dev
+  volumes:
+    - '.:/usr/src/app'
+  links:
+    - postgres:postgres
+    - mysql:mysql
+    - redis:redis
+    - memcached:memcached
+  ports:
+    - "3000:3000"
+
+redis:
+  image: redis:3.0
+
+memcached:
+  image: memcached:1.4
+
+postgres:
+  image: postgres:9.4
+  environment:
+    - POSTGRES_PASSWORD=root
+  ports:
+    - "5432:5432"
+  volumes_from:
+    - data
+
+mysql:
+  image: mysql:5.6
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+  ports:
+    - "3306:3306"
+  volumes_from:
+    - data
+
+data:
+  image: busybox
+  volumes:
+    - /var/lib/postgresql
+    - /var/lib/mysql
