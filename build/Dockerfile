@@ -9,6 +9,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
         build-essential \
         curl \
         git \
+        libtool-bin \
+        libzmq3-dev \
         python-dev \
         python-software-properties \
         sudo && \
@@ -21,7 +23,7 @@ RUN python -m pip version && \
         https://bootstrap.pypa.io/get-pip.py | python2.7
 
 # supervisor
-RUN pip install -U pyOpenSSL supervisor
+RUN pip install -U pyOpenSSL supervisor jupyter
 
 # the user
 ENV USER ruby
@@ -31,7 +33,7 @@ RUN echo $USER 'ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$USER
 RUN chmod 0440 /etc/sudoers.d/$USER
 
 # gems
-RUN sudo gem install rails rack
+RUN sudo gem install rbczmq rails rack iruby
 
 VOLUME /usr/src
 

@@ -94,3 +94,8 @@ No errors anymore, epic win!
     $ git add .
     $ git commit -m "My rails application"
     $ git push
+
+## Try Ruby!
+
+    $ cd ~/try-ruby
+    $ iruby notebook --ip=0.0.0.0 --port=3000
