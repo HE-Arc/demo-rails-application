@@ -61,7 +61,7 @@ Then open you favorite web browser and browse the address:
 ## Fixing the database connection.
 
 The database configuration is in the config/database.yml file. So open it and
-hack it quickly:
+tweak like this:
 
     default: &default
       adapter: mysql2
@@ -69,7 +69,7 @@ hack it quickly:
       pool: 5
       username: root
       password: <%= ENV['MYSQL_ENV_MYSQL_ROOT_PASSWORD'] %>
-      host: <%= ENV['MYSQL_PORT_3306_TCP_ADDR'] %>
+      host: mysql
 
 or
 
@@ -79,7 +79,7 @@ or
       pool: 5
       username: postgres
       password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>
-      host: <%= ENV['POSTGRES_PORT_5432_TCP_ADDR'] %>
+      host: postgres
 
 Then, you may create your database:
 
