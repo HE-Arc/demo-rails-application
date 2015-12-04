@@ -16,7 +16,7 @@ Or grab yourself the [Docker toolbox](https://www.docker.com/docker-toolbox)
 
 Grab it.
 
-    $ git clone https://github.com/HE-Arc/demo-ror-application ror
+    $ git clone https://github.com/HE-Arc/demo-rails-application ror
     $ cd ror
 
 ## Containers
