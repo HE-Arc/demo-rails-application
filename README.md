@@ -49,7 +49,7 @@ container is identified by `ror_web_1`.
     $ rails new .
     There is already a .gitignore so you can press "n"
 
-    $ rails serve --bind 0.0.0.0
+    $ rails server --bind 0.0.0.0
     => Booting WEBrick
     => Rails 4.2.5 application starting in development on http://0.0.0.0:3000
     => Run `rails server -h` for more startup options
