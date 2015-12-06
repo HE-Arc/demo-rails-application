@@ -23,8 +23,11 @@ Grab it.
 
 Now, the funny part that creates and starts the containers.
 
-    $ docker-compose build
-    $ docker-compose up [-d]
+    # if you uncomment the docker-composer.yml
+    #docker-compose build
+    # otherwise:
+    $ docker build -t greut/rails -f build/Dockerfile .
+    $ docker-compose up -d
     $ docker-compose logs web
 
 ## Entering the container
@@ -98,4 +101,4 @@ No errors anymore, epic win!
 ## Try Ruby!
 
     $ cd ~/try-ruby
-    $ iruby notebook --ip=0.0.0.0 --port=3000
+    $ iruby notebook --ip=0.0.0.0

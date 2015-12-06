@@ -1,10 +1,11 @@
 web:
-  build: .
-  dockerfile: build/Dockerfile
+  image: greut/rails:latest
+  #build: .
+  #dockerfile: build/Dockerfile
   hostname: ror
   domainname: dev
   volumes:
-    - '.:/usr/src/app'
+    - ".:/usr/src/app"
   links:
     - postgres:postgres
     - mysql:mysql
@@ -12,6 +13,7 @@ web:
     - memcached:memcached
   ports:
     - "3000:3000"
+    - "8888:8888"
 
 redis:
   image: redis:3.0

@@ -1,12 +1,14 @@
 #!/bin/bash
 
+username=ruby
+filename=${CWD}/.BOOT
+statfile=/usr/src/app/docker-compose.yml
+
 # Wait forever.
 at_term() {
     echo 'Bye bye.'
     exit 0
 }
-
-filename=${CWD}/.BOOT
 
 trap at_term TERM
 echo $$
@@ -14,10 +16,10 @@ while true; do
     if [ ! -f $filename ]; then
         touch $filename
 
+        #
         # Fix the local user to match the external files.
-        username=ruby
-
-        stat=`stat /usr/src/app/README.md | grep -Po '(?<=Uid: \\( )[0-9]*\/ [^\\)]*'`
+        #
+        stat=`stat $statfile | grep -Po '(?<=Uid: \\()[ 0-9]*\/ [^\\)]*'`
         # Bash only
         user=(${stat//\/ / })
         if [ "$username" != "${user[1]}" ]; then
@@ -28,7 +30,7 @@ while true; do
             fi
         fi
 
-        stat=`stat /usr/src/app/README.md | grep -Po "(?<=Gid: \(  )[0-9]*\/ [^\)]*"`
+        stat=`stat $statfile | grep -Po '(?<=Gid: \\()[ 0-9]*\/ [^\\)]*'`
         group=(${stat//\/ / })
         if [ "$username" != ${group[1]} ]; then
             oldgid=`id -g $username`
