@@ -1,7 +1,7 @@
 FROM rails:4.2
 
 # NodeSource special setup (does the apt-get update already, twice)
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get dist-upgrade -q -y && \

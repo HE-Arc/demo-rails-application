@@ -40,7 +40,7 @@ mysql:
     - data
 
 data:
-  image: busybox
+  image: busybox:latest
   volumes:
     - /var/lib/postgresql
     - /var/lib/mysql

@@ -91,6 +91,26 @@ Then, you may create your database:
 
 No errors anymore, epic win!
 
+## Activating extra libraries
+
+Open Gemfile, activates the bcrypt gem and add the puma web server.
+
+    # Use ActiveModel has_secure_password
+    gem 'bcrypt', '~> 3.1.7'
+
+    # Use Unicorn as the app server
+    # gem 'unicorn'
+
+    # Use Puma as the app server
+    gem 'puma'
+
+Then install them.
+
+    $ bundle install
+
+That easy.
+
+
 ## Pushing this to my repo.
 
     $ git remote origin set-url origin git@github.com:me/myproject.git
