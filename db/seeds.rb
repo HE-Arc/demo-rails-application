@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Size.create([
+  {name: 'XS'},
+  {name: 'S'},
+  {name: 'M'},
+  {name: 'L'},
+  {name: 'XL'},
+  {name: 'XXL'},
+])
+
+# ou sans copier-coller:
+#
+# Size.create(%w( XS S M L XL XXL ).map {|v| {name: v}})
