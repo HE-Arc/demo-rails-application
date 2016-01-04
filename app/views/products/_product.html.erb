@@ -1,2 +1,14 @@
-<h2><%= product.title %></h2>
-<p><%= number_to_currency product.price %></p>
+<div class="large-3 medium-6 small-12 columns">
+  <h2><%= product.title %></h2>
+  <p><img src="<%= product.image.url(:thumb) %>" alt="preview of <=% product.title %>"></p>
+  <p><%= number_to_currency product.price %></p>
+  <h3>Sizes</h3>
+  <ul class="inline-list">
+  <% product.sizes.each do |size| -%>
+    <li><%= size.name %></li>
+  <% end -%>
+  </ul>
+  <p>
+    <a class="button" href="<%= url_for(action: :buy, id: product.id) %>">Buy</a>
+  </p>
+</div>
