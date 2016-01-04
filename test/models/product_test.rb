@@ -28,4 +28,15 @@ class ProductTest < ActiveSupport::TestCase
     product.price = -1
     assert_not product.save
   end
+
+  test "comes in many sizes" do
+    product = Product.new(title: "Dummy", price: 10)
+    product.sizes << sizes(:L)
+    product.sizes << sizes(:M)
+
+    assert product.save
+    assert_includes sizes(:L).products, product
+    assert_includes sizes(:M).products, product
+    assert_not_includes sizes(:S).products, product
+  end
 end
