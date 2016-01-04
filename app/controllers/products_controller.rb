@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   end
 
   def buy
-    raise "TODO"
+    flash.notice = "TODO: buy a product #{params[:id]}"
+
+    redirect_to action: :index
   end
 end
