@@ -14,14 +14,14 @@
 
   <body>
 
-    <% if flash[:notice] -%>
-      <div class="alert-box info" data-alert>
-        <%= flash[:notice] %>
-        <a href="#" class="close">×</a>
-      </div>
-    <% end -%>
+    <main class="container">
+      <% if flash[:notice] -%>
+        <div data-alert class="alert-box info">
+          <%= flash[:notice] %>
+          <a href="#" class="close">×</a>
+        </div>
+      <% end -%>
 
-    <main>
       <%= yield %>
     </main>
   </body>
