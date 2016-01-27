@@ -1,14 +1,16 @@
 <div class="large-3 medium-4 small-12 columns product<%= " end" if product_counter + 1 == @products.count %>">
   <h2><%= product.title %></h2>
-  <p><img src="<%= product.image.url(:thumb) %>" alt="preview of <=% product.title %>"></p>
-  <p class="text-right price">
-    <a class="button" href="<%= url_for(action: :buy, id: product.id) %>">Buy</a>
+  <p>
+    <img src="<%= product.image.url(:thumb) %>" alt="preview of <=% product.title %>">
   </p>
-  <p><%= number_to_currency product.price %></p>
-  <h3>Sizes</h3>
-  <ul class="inline-list">
-  <% product.sizes.each do |size| -%>
-    <li><%= size.name %></li>
+  <p class="text-right price">
+    <a class="button large" href="<%= url_for(action: :buy, id: product.id) %>">
+      <%= number_to_currency product.price %>
+    </a>
+  </p>
+  <p>
+  <% product.sizes.reverse.each do |size| -%>
+    <span class="secondary label"><%= size.name %></span>
   <% end -%>
-  </ul>
+  </p>
 </div>

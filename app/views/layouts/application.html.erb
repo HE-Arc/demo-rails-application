@@ -7,19 +7,32 @@
     <title><%= content_for?(:title) ? yield(:title) : "Admin demo" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
 
-    <main class="container">
+    <main>
       <% if flash[:notice] -%>
-        <div data-alert class="alert-box info">
+      <div class="row">
+        <div data-closable class="callout primary">
           <%= flash[:notice] %>
-          <a href="#" class="close">×</a>
+          <button class="close-button" aria-label="Close notice" type="button" data-close>
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
+      </div>
+      <% end -%>
+      <% if flash[:alert] -%>
+      <div class="row">
+        <div data-closable class="callout alert">
+          <%= flash[:alert] %>
+          <button class="close-button" aria-label="Close alert" type="button" data-close>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
       <% end -%>
 
       <%= yield %>
