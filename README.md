@@ -1,5 +1,7 @@
 # Demo Ruby on Rails application
 
+[![Build Status](https://travis-ci.org/HE-Arc/demo-rails-application.svg?branch=master)](https://travis-ci.org/HE-Arc/demo-rails-application)
+
 How to setup a complete Rails setup on Docker.
 
 ## Requirements
