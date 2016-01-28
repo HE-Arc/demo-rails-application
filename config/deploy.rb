@@ -30,12 +30,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :default_env, {
-  "POSTGRES_USERNAME": "admin",
-  "POSTGRES_PASSWORD": "*********",  # FIXME
-  "GEM_HOME": "/var/www/.gem/ruby/2.2.0",
-  "PATH": "/var/www/.gem/ruby/2.2.0/bin:$PATH"
-}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -53,8 +47,14 @@ namespace :deploy do
 
   after :finished, :restart_puma do
     on roles(:web) do
-      execute :sudo, 'sv restart puma'
+      sudo 'sv restart puma'
     end
   end
 
+end
+
+# Source the environment variable beforehand.
+prefix = 'source ~/.bash_profile;'
+[:bundle, :rake, :rails].each do |cmd|
+  SSHKit.config.command_map.prefix[cmd].push(prefix)
 end
