@@ -1,12 +1,12 @@
 class SubscriptionMailer < ApplicationMailer
   def confirm(subscription)
-    @user = subscription
+    @email = subscription.email
     @url = url_for(controller: :newsletter,
                    action: :confirm,
                    id: subscription.id,
                    email: subscription.email)
     @subject = 'Subscription to Admin'
 
-    mail to: subscription.email, subject: @subject
+    mail to: @email, subject: @subject
   end
 end
