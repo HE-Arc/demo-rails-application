@@ -35,6 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_admin'
 # Automagic attached files
 gem 'paperclip', '~> 4.3'
+# Soft deletion
+gem 'paranoia', '~> 2.1'
 
 group :production, :staging do
   # Use Puma as the app server
