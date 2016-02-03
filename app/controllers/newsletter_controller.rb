@@ -17,7 +17,7 @@ class NewsletterController < ApplicationController
       end
     end
 
-    SubscriptionMailer.confirm(sub).deliver_now
+    SubscriptionMailer.confirm(sub).deliver_later
 
     flash.notice = "Thanks for your subscription #{params[:email]}!"
     redirect_to :back
