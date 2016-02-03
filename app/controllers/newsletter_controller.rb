@@ -17,8 +17,13 @@ class NewsletterController < ApplicationController
       end
     end
 
+    SubscriptionMailer.confirm(sub).deliver_now
+
     flash.notice = "Thanks for your subscription #{params[:email]}!"
     redirect_to :back
+  end
 
+  def confirm
+    raise NotImplementedError
   end
 end

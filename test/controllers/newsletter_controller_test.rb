@@ -8,6 +8,7 @@ class NewsletterControllerTest < ActionController::TestCase
     assert_not_nil flash[:notice]
     assert_nil flash[:alert]
     assert_redirected_to :back
+    assert_not ActionMailer::Base.deliveries.empty?
 
     assert_not_nil Subscription.find_by_email('john.john@example.org')
   end
@@ -19,6 +20,7 @@ class NewsletterControllerTest < ActionController::TestCase
     assert_nil flash[:notice]
     assert_not_nil flash[:alert]
     assert_redirected_to :back
+    assert_not_nil ActionMailer::Base.deliveries.empty?
   end
 
 
@@ -29,6 +31,7 @@ class NewsletterControllerTest < ActionController::TestCase
     assert_nil flash[:notice]
     assert_not_nil flash[:alert]
     assert_redirected_to :back
+    assert_not_nil ActionMailer::Base.deliveries.empty?
   end
 
   test 'subscription of deleted user succeeds' do
@@ -39,6 +42,7 @@ class NewsletterControllerTest < ActionController::TestCase
     assert_not_nil flash[:notice]
     assert_nil flash[:alert]
     assert_redirected_to :back
+    assert_not ActionMailer::Base.deliveries.empty?
 
     assert_nil Subscription.find(subscriptions(:two).id).deleted_at
   end
