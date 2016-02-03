@@ -10,4 +10,5 @@ services:
   - postgresql
 
 before_script:
+  - export HOSTNAME=travis
   - mv config/database{.travis,}.yml
