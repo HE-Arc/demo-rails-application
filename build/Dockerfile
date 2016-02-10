@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         python-software-properties \
         sudo \
         vim && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 # le Pip
