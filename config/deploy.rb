@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'app'
-set :repo_url, 'git@github.com:HE-Arc/demo-rails-application.git'
+set :repo_url, 'https://github.com/HE-Arc/demo-rails-application'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -47,7 +47,8 @@ namespace :deploy do
 
   after :finished, :restart_puma do
     on roles(:web) do
-      sudo 'sv restart puma'
+      sudo "sv restart puma"
+      sudo "rm -r /tmp/#{fetch(:application)}"
     end
   end
 
