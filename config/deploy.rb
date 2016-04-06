@@ -48,6 +48,7 @@ namespace :deploy do
   after :finished, :restart_puma do
     on roles(:web) do
       sudo "sv restart puma"
+      #execute :touch, "#{fetch(:deploy_to)}/shared/tmp/restart.txt"
     end
   end
 
