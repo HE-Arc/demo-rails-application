@@ -11,7 +11,7 @@ at_term() {
 }
 
 trap at_term TERM
-echo $$
+
 while true; do
     if [ ! -f $filename ]; then
         touch $filename
@@ -19,29 +19,30 @@ while true; do
         #
         # Fix the local user to match the external files.
         #
-        stat=`stat $statfile | grep -Po '(?<=Uid: \\()[ 0-9]*\/ [^\\)]*'`
+        uid=`python -c "import os; print(os.stat('${statfile}').st_uid)"`
+        user_id=`id -u $username`
         # Bash only
-        user=(${stat//\/ / })
-        if [ "$username" != "${user[1]}" ]; then
-            olduid=`id -u $username`
-            if [ "$olduid" != "${user[0]}" ]; then
-                usermod -u ${user[0]} $username
-                find / -not \( -path /proc -prune \) -user ${olduid} -exec chown -h ${user[0]} {} \;
-            fi
+        if [ "${user_uid}" != "${uid}" ]; then
+            # Change user's uid globally.
+            sed -i "s/\(${username}:x:\)${user_id}/\\1${uid}/" /etc/passwd
+            find / -not \( -path /proc -prune \) -user ${user_id} -exec chown -h ${uid} {} \;
         fi
 
-        stat=`stat $statfile | grep -Po '(?<=Gid: \\()[ 0-9]*\/ [^\\)]*'`
-        group=(${stat//\/ / })
-        if [ "$username" != ${group[1]} ]; then
-            oldgid=`id -g $username`
-            if [ "$oldgid" != "${group[0]}" ]; then
-                if [ "UNKNOWN" == "${group[1]}" ]; then
-                    groupmod -g ${group[0]} $username
-                else
-                    usermod --gid ${group[1]} --groups ${group[1]},$username $username
-                fi
-                find / -not \( -path /proc -prune \) -group ${oldgid} -exec chgrp -h ${group[0]} {} \;
+        gid=`python -c "import os; print(os.stat('${statfile}').st_gid)"`
+        group_id=`id -g $username`
+        if [ "${group_id}" != "${gid}" ]; then
+            # Change user's gid globally.
+            sed -i "s/\(${username}:x:${uid}:\)${group_id}/\\1${gid}/" /etc/passwd
+
+            # Add user to the existing group (or create it).
+            group_name=`getent group ${gid} | cut -d: -f1`
+            if [ "{$group_name}" == "" ]; then
+                group_name=usergroup
+                addgroup -g ${gid} ${group_name}
             fi
+            adduser $username -G ${group_name}
+
+            find / -not \( -path /proc -prune \) -group ${group_id} -exec chgrp -h ${gid} {} \;
         fi
 
         echo "Booted up! To rerun, rm $filename"

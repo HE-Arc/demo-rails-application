@@ -1,52 +1,51 @@
-web:
-  image: greut/rails:latest
-  #build: .
-  #dockerfile: build/Dockerfile
-  hostname: ror
-  domainname: dev
-  volumes:
-    - ".:/usr/src/app"
-  links:
-    - postgres:postgres
-    - mysql:mysql
-    - redis:redis
-    - memcached:memcached
-    - mail:mail
-  ports:
-    - "3000:3000"
-    - "8888:8888"
+version: '2'
 
-redis:
-  image: redis:3.0
+services:
+  web:
+    image: greut/rails:latest
+    #build: .
+    #dockerfile: build/Dockerfile
+    hostname: ror
+    domainname: dev
+    volumes:
+      - ".:/usr/src/app"
+    ports:
+      - "3000:3000"
+      - "8888:8888"
 
-memcached:
-  image: memcached:1.4
+  redis:
+    image: redis:3.0
+    volumes:
+      - redis:/data
 
-postgres:
-  image: postgres:9.4
-  environment:
-    - POSTGRES_PASSWORD=root
-  ports:
-    - "5432:5432"
-  volumes_from:
-    - data
+  memcached:
+    image: memcached:1.4
 
-mysql:
-  image: mysql:5.6
-  environment:
-    - MYSQL_ROOT_PASSWORD=root
-  ports:
-    - "3306:3306"
-  volumes_from:
-    - data
+  postgres:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
 
-mail:
-  image: mailhog/mailhog:latest
-  ports:
-    - "8025:8025"
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
 
-data:
-  image: busybox:latest
-  volumes:
-    - /var/lib/postgresql
-    - /var/lib/mysql
+  mail:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+
+volumes:
+  mysql:
+  postgres:
+  redis:
