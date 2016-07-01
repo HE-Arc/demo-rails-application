@@ -1,3 +1,6 @@
+=begin
+Rails 5.0.0 is still waiting.
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration
@@ -35,3 +38,4 @@ RailsAdmin.config do |config|
     # history_show
   end
 end
+=end

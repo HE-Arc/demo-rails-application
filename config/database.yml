@@ -33,7 +33,7 @@ development:
   <<: *default
   database: app_development
   user: postgres
-  password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>
+  password: root
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -69,7 +69,7 @@ test:
   <<: *default
   database: app_test
   user: postgres
-  password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>
+  password: root
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

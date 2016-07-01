@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg', '~> 0.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,12 +31,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'tzinfo-data', '~> 1.2016.5'
+
 # Automagic administration with rails_admin
-gem 'rails_admin'
+#gem 'rails_admin'
 # Automagic attached files
-gem 'paperclip', '~> 4.3'
+gem 'paperclip', '~> 5.0'
 # Soft deletion
-gem 'paranoia', '~> 2.1'
+#gem 'paranoia', '~> 2.1'
 
 group :production, :staging do
   # Use Puma as the app server
