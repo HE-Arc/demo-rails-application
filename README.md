@@ -26,7 +26,7 @@ Grab it.
 Now, the funny part that creates and starts the containers.
 
     # if you uncomment the docker-composer.yml
-    #docker-compose build
+    $ docker-compose build
     # otherwise:
     $ docker build -t greut/rails -f build/Dockerfile .
     $ docker-compose up -d
@@ -38,11 +38,13 @@ We will work from the container called `web`. Docker-compose puts a prefix
 to it (the name of the directory) and a suffix, a counter. Hence, our web
 container is identified by `ror_web_1`.
 
-    $ docker exec -it ror_web_1 /bin/bash
-    # root@ror:/# su ruby
+    $ docker-compose web /bin/sh
+    / # su ruby
+    / $ . /etc/profile
+    / $ export PATH = $BUNDLE_BIN:$PATH
     $ ruby@ror:/# cd /usr/src/app
     $ ruby@ror:/usr/src/app$ rails -v
-    Rails 4.2.5
+    Rails 5.0.0
 
 
 ## Setting up the rails application
@@ -73,7 +75,7 @@ tweak like this:
       encoding: utf8mb4
       pool: 5
       username: root
-      password: <%= ENV['MYSQL_ENV_MYSQL_ROOT_PASSWORD'] %>
+      password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
       host: mysql
 
 or
@@ -83,28 +85,22 @@ or
       encoding: unicode
       pool: 5
       username: postgres
-      password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>
+      password: <%= ENV['POSTGRES_PASSWORD'] %>
       host: postgres
 
 Then, you may create your database:
 
-    $ rake db:create
+    $ rails db:create
     $ rails s -b 0.0.0.0
 
 No errors anymore, epic win!
 
 ## Activating extra libraries
 
-Open Gemfile, activates the bcrypt gem and add the puma web server.
+Open Gemfile, activates the bcrypt gem.
 
     # Use ActiveModel has_secure_password
     gem 'bcrypt', '~> 3.1.7'
-
-    # Use Unicorn as the app server
-    # gem 'unicorn'
-
-    # Use Puma as the app server
-    gem 'puma'
 
 Then install them.
 
@@ -119,8 +115,3 @@ That easy.
     $ git add .
     $ git commit -m "My rails application"
     $ git push
-
-## Try Ruby!
-
-    $ cd ~/try-ruby
-    $ iruby notebook --ip=0.0.0.0

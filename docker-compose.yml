@@ -3,23 +3,29 @@ version: '2'
 services:
   web:
     image: greut/rails:latest
-    #build: .
-    #dockerfile: build/Dockerfile
+    build: .
     hostname: ror
     domainname: dev
+    environment:
+      - POSTGRES_PASSWORD=root
+      #- MYSQL_ROOT_PASSWORD=root
     volumes:
       - ".:/usr/src/app"
+    depends_on:
+      - redis
+      - postgres
+      #- mysql
     ports:
       - "3000:3000"
       - "8888:8888"
 
   redis:
-    image: redis:3.0
+    image: redis:3.2-alpine
     volumes:
       - redis:/data
 
-  memcached:
-    image: memcached:1.4
+  #memcached:
+  #  image: memcached:1.4
 
   postgres:
     image: postgres:9.5
@@ -31,14 +37,14 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql:/var/lib/mysql
+  #mysql:
+  #  image: mysql:5.7
+  #  environment:
+  #    - MYSQL_ROOT_PASSWORD=root
+  #  ports:
+  #    - "3306:3306"
+  #  volumes:
+  #    - mysql:/var/lib/mysql
 
   mail:
     image: mailhog/mailhog:latest

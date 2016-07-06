@@ -38,12 +38,10 @@ gem 'tzinfo-data', '~> 1.2016.5'
 # Automagic attached files
 gem 'paperclip', '~> 5.0'
 # Soft deletion
-#gem 'paranoia', '~> 2.1'
+gem 'soft_deletion', '~> 0.7'
 
-group :production, :staging do
-  # Use Puma as the app server
-  gem 'puma'
-end
+# Use Puma as the app server
+gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
