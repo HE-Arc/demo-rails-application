@@ -12,25 +12,17 @@ class SubscriptionTest < ActiveSupport::TestCase
     sub = subscriptions(:one)
 
     assert_nil sub.deleted_at
-    sub.destroy
+    sub.soft_delete
     assert sub.deleted?
     assert_not_nil sub.deleted_at
 
     assert_nil Subscription.find_by_id(sub.id)
-    assert_not_nil Subscription.with_deleted.find_by_id(sub.id)
+    Subscription.with_deleted do
+      assert_not_nil Subscription.find_by_id(sub.id)
+    end
 
-    sub.restore
+    sub.soft_undelete!
     assert_nil sub.deleted_at
-  end
-
-  test "hard deletion" do
-    sub = subscriptions(:two)
-
-    assert_nil sub.deleted_at
-    sub.really_destroy!
-
-    assert_nil Subscription.find_by_id(sub.id)
-    assert_nil Subscription.with_deleted.find_by_id(sub.id)
   end
 
   test "email is required" do

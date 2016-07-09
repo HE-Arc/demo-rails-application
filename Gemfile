@@ -58,3 +58,8 @@ group :development do
   # Deployment using capistrano
   gem 'capistrano-rails', '~> 1.1'
 end
+
+group :test do
+  # Brings assigns and assert_template in controller and integration tests.
+  gem 'rails-controller-testing'
+end
