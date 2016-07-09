@@ -13,5 +13,7 @@ module App
     # -- all .rb files in that directory are automatically loaded.
 
     config.action_mailer.default_url_options = { host: ENV['HOSTNAME'] }
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

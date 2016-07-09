@@ -21,7 +21,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.5'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -41,7 +41,11 @@ gem 'paperclip', '~> 5.0'
 gem 'soft_deletion', '~> 0.7'
 
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 3.0'
+# Use Redis Rails to set up a Redis back-end.
+gem 'redis-rails', '~> 5.0.0'
+# Use Sidekiq as a background job.
+gem 'sidekiq', '~> 4.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
