@@ -31,6 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Coding style
+gem 'rubocop', require: false
+
 gem 'tzinfo-data', '~> 1.2016.5'
 
 # Automagic administration with rails_admin
