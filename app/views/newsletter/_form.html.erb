@@ -1,6 +1,12 @@
-<h2>Newsletter</h2>
-<%= form_tag :subscribe do -%>
-  <%= label_tag :email, "E-mail" -%>
-  <%= text_field_tag :email -%>
-  <%= submit_tag "Susbcribe" -%>
-<% end -%>
+<div class="columns small-12">
+  <h2>Newsletter</h2>
+  <%= form_tag :subscribe do -%>
+  <div class="input-group">
+    <%= label_tag :email, "E-mail", class: 'input-group-label' -%>
+    <%= text_field_tag :email, nil, placeholder: 'your.name@domain.com', class: 'input-group-field' -%>
+    <div class="input-group-button">
+      <%= submit_tag "Susbcribe", class: 'button' -%>
+    </div>
+  </div>
+  <% end -%>
+</div>
