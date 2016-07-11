@@ -22,7 +22,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "price must be positive" do
-    product = Product.new(title: "Dummy", price: 0)
+    product = Product.new(title: "Dummy", price: -1)
     assert_not product.save
 
     product.price = -1
