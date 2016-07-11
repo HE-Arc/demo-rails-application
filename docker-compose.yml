@@ -17,7 +17,6 @@ services:
       #- mysql
     ports:
       - "3000:3000"
-      - "8888:8888"
 
   redis:
     image: redis:3.2-alpine

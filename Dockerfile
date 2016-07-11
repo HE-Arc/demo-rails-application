@@ -9,6 +9,7 @@ RUN apk update \
         curl-dev \
         libxml2-dev \
         libxslt-dev \
+        git \
         mysql-client \
         mysql-dev \
         nodejs \
@@ -25,13 +26,16 @@ RUN apk update \
 RUN adduser -h /usr/src/app -s /bin/sh -D ruby
 
 USER ruby
-RUN gem install -N bundler rails rake
+RUN gem install -N bundler foreman rails rake
 
 USER root
 COPY build/boot.sh /usr/local/bin/boot.sh
 RUN chmod +x /usr/local/bin/boot.sh
 
 EXPOSE 3000
-VOLUME /usr/src
+#VOLUME /usr/src
+
+# fix /etc/profile
+RUN sed -i 's/^export PATH/#export PATH/' /etc/profile
 
 ENTRYPOINT [ "/usr/local/bin/boot.sh" ]

@@ -46,6 +46,9 @@ container is identified by `ror_web_1`.
     $ ruby@ror:/# cd /usr/src/app
     $ ruby@ror:/usr/src/app$ rails -v
     Rails 5.0.0
+    $ bundle install
+    $ rails db:migrate db:seed
+    $ foreman start
 
 
 ## Setting up the rails application
