@@ -33,8 +33,11 @@ gem 'rubocop', require: false
 
 gem 'tzinfo-data', '~> 1.2016.5'
 
-# Automagic administration with rails_admin
-#gem 'rails_admin'
+# Automagic administration.
+gem 'activeadmin', github: 'activeadmin'
+# Pre-Rails 5 support for activeadmin.
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+
 # Automagic attached files
 gem 'paperclip', '~> 5.0'
 # Soft deletion

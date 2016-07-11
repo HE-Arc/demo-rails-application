@@ -2,9 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
-  # Not Rails 5.0.0 ready as of yet
-  #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  ActiveAdmin.routes(self)
 
   # Sidekiq web interface
   mount Sidekiq::Web => '/sidekiq'

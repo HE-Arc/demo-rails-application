@@ -7,9 +7,12 @@ RUN apk update \
         build-base \
         curl \
         curl-dev \
+        file \
+        git \
+        imagemagick \
+        libmagic \
         libxml2-dev \
         libxslt-dev \
-        git \
         mysql-client \
         mysql-dev \
         nodejs \
@@ -35,7 +38,7 @@ RUN chmod +x /usr/local/bin/boot.sh
 EXPOSE 3000
 #VOLUME /usr/src
 
-# fix /etc/profile
+# Fix /etc/profile to not override the containers' env.
 RUN sed -i 's/^export PATH/#export PATH/' /etc/profile
 
 ENTRYPOINT [ "/usr/local/bin/boot.sh" ]

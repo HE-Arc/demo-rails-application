@@ -40,6 +40,7 @@ to it (the name of the directory) and a suffix, a counter. Hence, our web
 container is identified by `ror_web_1`.
 
     $ docker-compose web /bin/sh
+    / mv /etc/profile.d/color_prompt /etc/profile.d/color_prompt.sh
     / # su ruby
     / $ . /etc/profile
     / $ export PATH = $BUNDLE_BIN:$PATH
