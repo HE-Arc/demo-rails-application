@@ -3,7 +3,7 @@ MAINTAINER Yoan Blanc yoan@dosimple.ch
 
 
 RUN apk update \
-    && apk add --update --no-cache \
+ && apk add --update --no-cache \
         build-base \
         curl \
         curl-dev \
@@ -22,7 +22,7 @@ RUN apk update \
         sqlite-dev \
         yaml \
         zlib-dev \
-    && rm -rf /var/cache/apk/*
+ && rm -rf /var/cache/apk/*
 
 
 # the user

@@ -46,7 +46,7 @@ container is identified by `ror_web_1`.
     / $ export PATH = $BUNDLE_BIN:$PATH
     $ ruby@ror:/# cd /usr/src/app
     $ ruby@ror:/usr/src/app$ rails -v
-    Rails 5.0.0
+    Rails 5.0.0.1
     $ bundle install
-    $ rails db:migrate db:seed
+    $ rails db:create db:migrate db:seed
     $ foreman start
