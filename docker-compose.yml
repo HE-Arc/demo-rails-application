@@ -16,7 +16,7 @@ services:
       - postgres
       #- mysql
     ports:
-      - "3000:3000"
+      - 3000:3000
 
   redis:
     image: redis:3.2-alpine
@@ -32,7 +32,7 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_PGDATA=/var/lib/postgresql/data/pgdata
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - postgres:/var/lib/postgresql/data
 
@@ -48,9 +48,9 @@ services:
   mail:
     image: mailhog/mailhog:latest
     ports:
-      - "8025:8025"
+      - 8025:8025
 
 volumes:
-  mysql:
+  #mysql:
   postgres:
   redis:
