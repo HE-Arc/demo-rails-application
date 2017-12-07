@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0.1'
+gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use SCSS for stylesheets
@@ -34,14 +34,12 @@ gem 'rubocop', require: false
 gem 'tzinfo-data', '~> 1.2016.5'
 
 # Automagic administration.
-gem 'activeadmin', github: 'activeadmin'
-# Pre-Rails 5 support for activeadmin.
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin', '~> 1.1.0'
 
 # Automagic attached files
 gem 'paperclip', '~> 5.0'
 # Soft deletion
-gem 'soft_deletion', '~> 0.7'
+gem 'soft_deletion', '~> 1.2.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.6'
@@ -49,10 +47,6 @@ gem 'puma', '~> 3.6'
 gem 'redis-rails', '~> 5.0.0'
 # Use Sidekiq as a background job.
 gem 'sidekiq', '~> 4.1'
-# Sidekiq's web interface requires Sinatra
-#gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
-# Sinatra 2 requires Rack protection
-#gem 'rack-protection', git: 'https://github.com/sinatra/rack-protection'
 
 # Enable the usage of namespace in redis.
 gem 'redis-namespace'
