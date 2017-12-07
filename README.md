@@ -39,7 +39,7 @@ We will work from the container called `web`. Docker-compose puts a prefix
 to it (the name of the directory) and a suffix, a counter. Hence, our web
 container is identified by `ror_web_1`.
 
-    $ docker-compose web /bin/sh
+    $ docker-compose exec web /bin/sh
     / mv /etc/profile.d/color_prompt /etc/profile.d/color_prompt.sh
     / # su ruby
     / $ . /etc/profile

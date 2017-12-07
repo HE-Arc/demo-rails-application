@@ -19,7 +19,7 @@ services:
       - 3000:3000
 
   redis:
-    image: redis:3.2-alpine
+    image: redis:4-alpine
     volumes:
       - redis:/data
 
@@ -27,7 +27,7 @@ services:
   #  image: memcached:1.4
 
   postgres:
-    image: postgres:9.5
+    image: postgres:9.6
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_PGDATA=/var/lib/postgresql/data/pgdata

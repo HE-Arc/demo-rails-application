@@ -50,9 +50,9 @@ gem 'redis-rails', '~> 5.0.0'
 # Use Sidekiq as a background job.
 gem 'sidekiq', '~> 4.1'
 # Sidekiq's web interface requires Sinatra
-gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
+#gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
 # Sinatra 2 requires Rack protection
-gem 'rack-protection', git: 'https://github.com/sinatra/rack-protection'
+#gem 'rack-protection', git: 'https://github.com/sinatra/rack-protection'
 
 # Enable the usage of namespace in redis.
 gem 'redis-namespace'
